@@ -1,13 +1,25 @@
 import React from 'react';
 
+import './styles/GlobalStyles';
+
 function App() {
+
+
+
   return (
     <>
-      <form action="">
+    <div className="main">
+      <form action="/">
         Informe um nome
         <input type="text"/>
-        <button type="submit">Enviar</button>
+        Informe a idade
+        <input type="number" name="idade" id="idade"/>
+        Whatsapp
+        <input type="number"/>
+        <button type="submit">Cadastrar</button>
       </form>
+    </div>
+      
     </>
   );
 }
