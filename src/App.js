@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles/GlobalStyles';
+import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
 
@@ -8,15 +8,26 @@ function App() {
 
   return (
     <>
+    <GlobalStyles />
+
+
     <div className="main">
+      
+      <h1>Cadastro de Usuário</h1>
+        
       <form action="/">
-        Informe um nome
-        <input type="text"/>
-        Informe a idade
-        <input type="number" name="idade" id="idade"/>
-        Whatsapp
-        <input type="number"/>
+        <div className="dados">
+          <label>Informe seu nome</label> 
+          <input type="text"/>
+          <label htmlFor=""> Informe sua idade</label>
+          <input type="number" name="idade" id="idade"/>
+          <label htmlFor="">Whatsapp</label> 
+          <input type="number"/>
+        </div>        
+        <div className="btn-cadastrar">
         <button type="submit">Cadastrar</button>
+        </div>
+        
       </form>
     </div>
       
