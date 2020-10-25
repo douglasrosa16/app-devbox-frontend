@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { GlobalStyles } from './styles/GlobalStyles';
-
+import api from './services/api';
 function App() {
-
-
 
   return (
     <>
@@ -23,14 +21,17 @@ function App() {
           <input type="number" name="idade" id="idade"/>
           <label htmlFor="">Whatsapp</label> 
           <input type="number"/>
+          <label htmlFor="">Email</label> 
+          <input type="text"/>
         </div>        
         <div className="btn-cadastrar">
         <button type="submit">Cadastrar</button>
-        </div>
-        
+        </div>        
       </form>
     </div>
-      
+    <form action="/users" method="get">
+      <button type="submit">Mostra usuários</button>
+    </form>
     </>
   );
 }
