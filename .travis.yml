@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '12'
+install: yarn install
+deploy:
+  provider: heroku
+  app: "app-devbox-frontend"
+  api_key:
+    secure: $HEROKU_API_KEY
