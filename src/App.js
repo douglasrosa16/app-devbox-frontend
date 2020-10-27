@@ -29,7 +29,7 @@ function App() {
         </div>        
       </form>
     </div>
-    <form action="/users" method="get">
+    <form action="users" method="get">
       <button type="submit">Mostra usuários</button>
     </form>
     </>
