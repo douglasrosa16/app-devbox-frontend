@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import { GlobalStyles } from './styles/GlobalStyles';
 import api from './services/api';
+
 function App() {
 
   return (
-    <>
+    <>    
     <GlobalStyles />
 
 
@@ -27,9 +28,12 @@ function App() {
         <div className="btn-cadastrar">
         <button type="submit">Cadastrar</button>
         </div>        
-      </form>
+      </form>      
     </div>
-    <form action="users" method="get">
+    <div className="">
+    <input defaultValue={process.env.REACT_APP_API_URL} />
+    </div>
+    <form action="/users" method="get">
       <button type="submit">Mostra usuários</button>
     </form>
     </>
