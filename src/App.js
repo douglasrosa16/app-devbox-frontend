@@ -9,7 +9,6 @@ function App() {
     <>    
     <GlobalStyles />
 
-
     <div className="main">
       
       <h1>Cadastro de Usuário</h1>
@@ -32,10 +31,10 @@ function App() {
     </div>
     <div className="">
     <input defaultValue={process.env.REACT_APP_API_URL} />
-    </div>
-    <form action="/users" method="get">
-      <button type="submit">Mostra usuários</button>
-    </form>
+    </div>    
+    
+    <button onClick={}>Mostra usuários</button>
+    
     </>
   );
 }
