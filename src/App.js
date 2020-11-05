@@ -5,6 +5,15 @@ import api from './services/api';
 
 function App() {
 
+  function buscaUsuarios(e){
+    e.preventDefault();
+    const users = api.get('users').then((response) => {
+      console.log(response.data);
+    });
+   
+  }
+  const nome_completo = 'Douglas';
+
   return (
     <>    
     <GlobalStyles />
@@ -33,9 +42,9 @@ function App() {
     <div className="">
     <input defaultValue={process.env.REACT_APP_API_URL} />
     </div>
-    <form action="/users" method="get">
-      <button type="submit">Mostra usuários</button>
-    </form>
+    
+    <button onClick={buscaUsuarios} type="button">Mostra usuários</button>    
+    <input type="text" value={nome_completo}/>
     </>
   );
 }
