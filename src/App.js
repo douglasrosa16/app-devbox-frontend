@@ -2,8 +2,31 @@ import React, { useState } from 'react';
 
 import { GlobalStyles } from './styles/GlobalStyles';
 import api from './services/api';
+import Usuarios from './Pages/Usuarios';
 
 function App() {
+
+  const [user, setUser] = useState(['']);
+  //const usuarios = ['Douglas','Wellen','Diego'];
+  function buscaUsuarios(e){
+    e.preventDefault();
+    const users = api.get('users').then((response) => {
+      console.log(response.data);
+    });
+    return users;
+  }
+  
+  async function cadastraUsuario(){
+    const newUser = [
+      {
+        id: 3,
+        name: 'Wellen'
+      }
+    ];
+    setUser(...user,newUser);
+    //const res = await api.post('cadastro', {newUser})
+    //return res.data;
+  }
 
   return (
     <>    
@@ -29,11 +52,17 @@ function App() {
         </div>        
       </form>      
     </div>
-    <div className="">
-    <input defaultValue={process.env.REACT_APP_API_URL} />
-    </div>    
     
-    <button onClick={}>Mostra usuários</button>
+    <button onClick={buscaUsuarios} type="button">Mostra usuários</button>    
+    <div className="listUsers">
+      <ul>        
+        {user.map(u => (
+          <li key={user}>{user}</li>
+        ))
+        }       
+      </ul>
+    </div>
+    <button type="button" onClick={cadastraUsuario}>Cadastra usuário</button>    
     
     </>
   );
