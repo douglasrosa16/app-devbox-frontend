@@ -6,27 +6,36 @@ import Usuarios from './Pages/Usuarios';
 
 function App() {
 
-  const [user, setUser] = useState([]);
-  const usuarios = ['Douglas','Wellen','Diego'];
+  const [user, setUser] = useState(['Kleber','Wellen','Diego']);
+
+  //const usuarios = ['Douglas','Wellen','Diego'];
 
   function buscaUsuarios(e){
     e.preventDefault();
     const users = api.get('users').then((response) => {
       console.log(response.data);
     });
-    return users;
+    setUser(users);    
   }
   
-  async function cadastraUsuario(){
-    console.log(user);
+  function cadastraUsuario(){
+    const nome = document.getElementById("usuario").value;
+    const idade = document.getElementById("idade").value;
+    const whatsapp = document.getElementById("whatsapp").value;
+    const email = document.getElementById("email").value;
+    
     const newUser = [
       {
         id: 3,
-        name: 'Wellen'
+        name: nome,
+        wpp: whatsapp,
+        mail: email,
+        age: idade
       }
     ];
     setUser(newUser);
-    console.log(user);
+    //setUser(newUser);
+    console.log(newUser);
     //const res = await api.post('cadastro', {newUser})
     //return res.data;
   }
@@ -42,13 +51,13 @@ function App() {
       <form action="/">
         <div className="dados">
           <label>Informe seu nome</label> 
-          <input type="text"/>
+          <input type="text" id="usuario"/>
           <label htmlFor=""> Informe sua idade</label>
           <input type="number" name="idade" id="idade"/>
           <label htmlFor="">Whatsapp</label> 
-          <input type="number"/>
+          <input type="number" id="whatsapp"/>
           <label htmlFor="">Email</label> 
-          <input type="text"/>
+          <input type="text" id="email"/>
         </div>        
         <div className="btn-cadastrar">
         <button type="submit">Cadastrar</button>
@@ -60,15 +69,7 @@ function App() {
     
     <button id="btn-cad-user"type="button" onClick={cadastraUsuario}>Cadastra usuário</button>    
 
-    <div className="listUsers">
-      <p>Lista de Usuários cadastrados</p>
-      <ul>        
-        {usuarios.map(u => (
-          <li>{u}</li>
-        ))
-        }       
-      </ul>
-    </div>
+    
     </>
   );
 }
