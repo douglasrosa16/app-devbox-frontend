@@ -46,4 +46,14 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
+
+  #btn-show-users {
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  .listUsers {
+    margin-top: 8px;
+    margin-left: 10px;
+  }
 `; 

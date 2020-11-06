@@ -6,8 +6,9 @@ import Usuarios from './Pages/Usuarios';
 
 function App() {
 
-  const [user, setUser] = useState(['']);
-  //const usuarios = ['Douglas','Wellen','Diego'];
+  const [user, setUser] = useState([]);
+  const usuarios = ['Douglas','Wellen','Diego'];
+
   function buscaUsuarios(e){
     e.preventDefault();
     const users = api.get('users').then((response) => {
@@ -17,17 +18,19 @@ function App() {
   }
   
   async function cadastraUsuario(){
+    console.log(user);
     const newUser = [
       {
         id: 3,
         name: 'Wellen'
       }
     ];
-    setUser(...user,newUser);
+    setUser(newUser);
+    console.log(user);
     //const res = await api.post('cadastro', {newUser})
     //return res.data;
   }
-
+  
   return (
     <>    
     <GlobalStyles />
@@ -53,17 +56,19 @@ function App() {
       </form>      
     </div>
     
-    <button onClick={buscaUsuarios} type="button">Mostra usuários</button>    
+    <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
+    
+    <button id="btn-cad-user"type="button" onClick={cadastraUsuario}>Cadastra usuário</button>    
+
     <div className="listUsers">
+      <p>Lista de Usuários cadastrados</p>
       <ul>        
-        {user.map(u => (
-          <li key={user}>{user}</li>
+        {usuarios.map(u => (
+          <li>{u}</li>
         ))
         }       
       </ul>
     </div>
-    <button type="button" onClick={cadastraUsuario}>Cadastra usuário</button>    
-    
     </>
   );
 }
