@@ -18,26 +18,24 @@ function App() {
     setUser(users);    
   }
   
-  function cadastraUsuario(){
+  async function cadastraUsuario(){
     const nome = document.getElementById("usuario").value;
     const idade = document.getElementById("idade").value;
     const whatsapp = document.getElementById("whatsapp").value;
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("mail").value;
     
-    const newUser = [
-      {
-        id: 3,
+    const newUser = 
+      {        
         name: nome,
         wpp: whatsapp,
         mail: email,
         age: idade
       }
-    ];
+    ;
     setUser(newUser);
-    //setUser(newUser);
     console.log(newUser);
-    //const res = await api.post('cadastro', {newUser})
-    //return res.data;
+    const res = await api.post('cadastro', {newUser})
+    return res.data;
   }
   
   return (
@@ -57,19 +55,16 @@ function App() {
           <label htmlFor="">Whatsapp</label> 
           <input type="number" id="whatsapp"/>
           <label htmlFor="">Email</label> 
-          <input type="text" id="email"/>
+          <input type="text" id="mail"/>
         </div>        
         <div className="btn-cadastrar">
-        <button type="submit">Cadastrar</button>
+        <button type="submit" onClick={cadastraUsuario}>Cadastrar</button>
         </div>        
       </form>      
     </div>
     
     <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
-    
-    <button id="btn-cad-user"type="button" onClick={cadastraUsuario}>Cadastra usuário</button>    
-
-    
+        
     </>
   );
 }
