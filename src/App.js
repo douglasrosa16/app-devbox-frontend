@@ -6,7 +6,7 @@ import Usuarios from './Pages/Usuarios';
 
 function App() {
 
-  const [user, setUser] = useState(['Kleber','Wellen','Diego']);
+  const [user, setUser] = useState([]);
 
   //const usuarios = ['Douglas','Wellen','Diego'];
 
@@ -34,7 +34,12 @@ function App() {
     ;
     setUser(newUser);
     console.log(newUser);
-    const res = await api.post('cadastro', {newUser})
+    const res = await api.post('cadastro', {
+      name: nome,
+      wpp: whatsapp,
+      mail: email,
+      age: idade
+    })
     return res.data;
   }
   
@@ -64,7 +69,7 @@ function App() {
     </div>
     
     <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
-        
+    
     </>
   );
 }
