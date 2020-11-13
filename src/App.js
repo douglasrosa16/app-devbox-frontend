@@ -33,7 +33,7 @@ function App() {
       }
     ;
     setUser(newUser);
-    console.log(newUser);
+    
     const res = await api.post('cadastro', {
       name: nome,
       wpp: whatsapp,
