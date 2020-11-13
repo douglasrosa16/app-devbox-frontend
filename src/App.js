@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { GlobalStyles } from './styles/GlobalStyles';
 import api from './services/api';
-import Usuarios from './Pages/Usuarios';
 
 function App() {
+  
+  const [users, setUsers] = useState([]);
 
-  const [user, setUser] = useState([]);
+  useEffect(() => {
+    api.get('users').then(response => {
+      setUsers([response.data])
+    })
+    
+  }, []);
 
-  //const usuarios = ['Douglas','Wellen','Diego'];
 
   function buscaUsuarios(e){
     e.preventDefault();
-    const users = api.get('users').then((response) => {
-      console.log(response.data);
-    });
-    setUser(users);    
+    api.get('users').then((response) => {
+      setUsers([response.data]);       
+    });       
+    console.log(users)
   }
   
   async function cadastraUsuario(){
@@ -32,7 +37,7 @@ function App() {
         age: idade
       }
     ;
-    setUser(newUser);
+    setUsers([newUser]);
     
     const res = await api.post('cadastro', {
       name: nome,
@@ -69,7 +74,9 @@ function App() {
     </div>
     
     <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
-    
+    <ul>      
+      {users.map(user => <li key={user}>{user.email}</li>)}
+    </ul>
     </>
   );
 }
