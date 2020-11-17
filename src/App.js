@@ -7,12 +7,7 @@ function App() {
   
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    api.get('users').then(response => {
-      setUsers([response.data])
-    })
-    
-  }, []);
+  
 
 
   function buscaUsuarios(e){
@@ -39,12 +34,7 @@ function App() {
     ;
     setUsers([newUser]);
     
-    const res = await api.post('cadastro', {
-      name: nome,
-      wpp: whatsapp,
-      mail: email,
-      age: idade
-    })
+    const res = await api.post('cadastro', newUser)
     return res.data;
   }
   
@@ -74,8 +64,11 @@ function App() {
     </div>
     
     <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
-    <ul>      
-      {users.map(user => <li key={user}>{user.email}</li>)}
+    <ul>
+      {console.log(users)}
+      {users.map((user, index) => {
+        return <li key={index}>{user}</li>
+      })}
     </ul>
     </>
   );
