@@ -7,9 +7,6 @@ function App() {
   
   const [users, setUsers] = useState([]);
 
-  
-
-
   function buscaUsuarios(e){
     e.preventDefault();
     api.get('users').then((response) => {
