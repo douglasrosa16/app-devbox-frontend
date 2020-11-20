@@ -5,32 +5,30 @@ import api from './services/api';
 
 function App() {
   
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([{}]);
   
-  /*state = {
-    uploadedFiles: [],
-  };
-
-  async componentDidMount(){
-    const response = await api.get('posts');
-
-    this.setState({
-      uploadedFiles: response.data.map(file => ({
-        id: file._id,
-        name: file.name,
-        readableSize: filesize(file.size),
-        preview: file.url,
-        uploaded: true,
-        url: file.url,
-      }))
-    })
-  }
-  */
   async function buscaUsuarios(e){
     e.preventDefault();     
+   
+    const response = await api.get('users');
+    
+    setUsers({
+      user: response.data.users.map(file => ({
+        id: file._id,
+        name: file.name
+      }))
+    })
+    
+    /*
     await api.get('users').then((response) => {
-      setUsers(response.data);      
-    });        
+      usuarios = response.data.users.map(user => {
+        arrayUser[user._id] = user.name;
+        console.log('UserArray: '+user.name);
+        setUsers(...users, [user.name]);
+      });         
+    }); 
+    */   
+   console.log(users);
   }
   
   async function cadastraUsuario(){
@@ -76,14 +74,10 @@ function App() {
         <button type="submit" onClick={cadastraUsuario}>Cadastrar</button>
         </div>        
       </form>      
-    </div>
+    </div>  
     
-    <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
-    <ul>      
-      {users.map((user, index) => {
-        return <li key={index}>{user.name}</li>
-      })}
-    </ul>
+    <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>     
+    {users.name}
     </>
   );
 }
