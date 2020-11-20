@@ -56,4 +56,9 @@ export const GlobalStyles = createGlobalStyle`
     margin-top: 8px;
     margin-left: 10px;
   }
+
+  #users-list {
+    margin-top: 6px;
+    margin-left: 10px;
+  }
 `; 

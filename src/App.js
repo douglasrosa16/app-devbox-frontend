@@ -66,10 +66,10 @@ function App() {
       </form>      
     </div>  
     
-    <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>     
+    <button id="btn-show-users" onClick={buscaUsuarios} type="button">Lista usuários</button>     
     
     <ul>
-      {users.map(user => <li key={user.id}>{user.name}</li>)}
+      {users.map(user => <li id="users-list" key={user.id}>{user.name}</li>)}
     </ul>
 
     </>
