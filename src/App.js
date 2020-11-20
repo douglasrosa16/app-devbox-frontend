@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { GlobalStyles } from './styles/GlobalStyles';
 import api from './services/api';
@@ -6,13 +6,31 @@ import api from './services/api';
 function App() {
   
   const [users, setUsers] = useState([]);
+  
+  /*state = {
+    uploadedFiles: [],
+  };
 
-  function buscaUsuarios(e){
-    e.preventDefault();
-    api.get('users').then((response) => {
-      setUsers([response.data]);       
-    });       
-    console.log(users)
+  async componentDidMount(){
+    const response = await api.get('posts');
+
+    this.setState({
+      uploadedFiles: response.data.map(file => ({
+        id: file._id,
+        name: file.name,
+        readableSize: filesize(file.size),
+        preview: file.url,
+        uploaded: true,
+        url: file.url,
+      }))
+    })
+  }
+  */
+  async function buscaUsuarios(e){
+    e.preventDefault();     
+    await api.get('users').then((response) => {
+      setUsers(response.data);      
+    });        
   }
   
   async function cadastraUsuario(){
@@ -61,10 +79,9 @@ function App() {
     </div>
     
     <button id="btn-show-users" onClick={buscaUsuarios} type="button">Mostra usuários</button>    
-    <ul>
-      {console.log(users)}
+    <ul>      
       {users.map((user, index) => {
-        return <li key={index}>{user}</li>
+        return <li key={index}>{user.name}</li>
       })}
     </ul>
     </>
